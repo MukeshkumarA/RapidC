@@ -2,6 +2,7 @@ import { RestaurantList } from "../data/restaurantsData";
 import ShimmerComponent from "./Shimmer";
 import { IMG_CDN_URL } from "../config";
 import { useEffect, useState } from "react";
+import SearchComponent from "./SearchComponent";
 
 const RestaurantCard = ({
   name,
@@ -71,7 +72,7 @@ export const RestaurantGrid = () => {
   return (!filteredRestaurants)? <ShimmerComponent /> :
   (
     <div>
-      <div className="text-center">
+      {/* <div className="text-center">
         <input
           className="border-2  border-black w-[20%]"
           type="text"
@@ -79,8 +80,8 @@ export const RestaurantGrid = () => {
           value={searchText}
           onChange={getRestaurants}
         />
-        {/* <button onClick={getRestaurants}>search</button> */}
-      </div>
+      </div> */}
+      <SearchComponent searchText={searchText} searchFunction={getRestaurants} />
 
        {(filteredRestaurants.length > 0 && allRestaurants)?
        <div className="flex justify-center m-[50px] flex-wrap">

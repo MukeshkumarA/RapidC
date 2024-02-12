@@ -45,7 +45,7 @@ const TopItems = () => {
                         <button key="right-button" className='bg-blue-700 p-2' onClick={moveRight}>Right</button>
                 </div>
 
-                <div className="px-[10%] p-5 carousel rounded-box  carousel-center" key="div2" >
+                <div className="mx-[10%] p-5 carousel rounded-box" key="div2" >
                     {itemsToShow?.map(item => 
                         <div key={item.id} className='carousel-item'>
                             {/* <div>{item.action.text}</div> */}

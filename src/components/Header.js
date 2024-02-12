@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from './Title';
+import { Link } from 'react-router-dom';
 
 const Header= () => {
     return (
@@ -9,9 +10,21 @@ const Header= () => {
          <div>
             <ul className="flex space-x-8 mt-3">
                 <li>Search</li>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li>
+                  <Link to="/">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact">
+                    Contact
+                  </Link>
+                </li>
                 <li>Sign in</li>
                 <li>Cart</li>
             </ul>
