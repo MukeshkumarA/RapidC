@@ -55,26 +55,25 @@ export const RestaurantGrid = () => {
   }
 
   const getRestaurants = (event) => {
+    const value = event.target.value;
+    setSearchText(value);
 
-    setSearchText(event.target.value);
-    if(searchText == '')
-        setFilteredRestaurants(allRestaurants);
     const filteredRestaurants = allRestaurants.filter( restaurant => {
-        return restaurant?.info?.name.toLowerCase().includes(searchText);
+        return restaurant?.info?.name.toLowerCase().includes(value.toLowerCase());
     })
-    if(filteredRestaurants.length > 0)
+    if(value == "")
+      setFilteredRestaurants(allRestaurants);
+    else
       setFilteredRestaurants(filteredRestaurants);
-    // else
-    //   setFilteredRestaurants(allRestaurants);
   };
 
 
-  return (!allRestaurants)? <ShimmerComponent /> :
+  return (!filteredRestaurants)? <ShimmerComponent /> :
   (
     <div>
       <div className="text-center">
         <input
-          className="border-2 rounded-lg"
+          className="border-2  border-black w-[20%]"
           type="text"
           placeholder="Search restaurant.."
           value={searchText}
@@ -83,13 +82,20 @@ export const RestaurantGrid = () => {
         {/* <button onClick={getRestaurants}>search</button> */}
       </div>
 
-      <div className="flex justify-center m-[50px] flex-wrap">
+       {(filteredRestaurants.length > 0 && allRestaurants)?
+       <div className="flex justify-center m-[50px] flex-wrap">
         {filteredRestaurants?.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
           );
         })}
       </div>
+      :
+      <div className="flex justify-center text-red-500">
+         <h2>No restaurants found...</h2>
+        </div>
+      }
+
     </div>
   );
 };

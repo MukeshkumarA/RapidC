@@ -37,7 +37,7 @@ const TopItems = () => {
         }
     }
 
-    return (!itemsToShow)?<TopItemsShimmer/>: (
+    return (
         <>
             <div className=''>
                 <div className='flex justify-end mr-5 text-white' key="div1">
@@ -45,11 +45,11 @@ const TopItems = () => {
                         <button key="right-button" className='bg-blue-700 p-2' onClick={moveRight}>Right</button>
                 </div>
 
-                <div className="p-5 carousel rounded-box" key="div2" >
+                <div className="px-[10%] p-5 carousel rounded-box  carousel-center" key="div2" >
                     {itemsToShow?.map(item => 
-                        <div key={item.id}>
+                        <div key={item.id} className='carousel-item'>
                             {/* <div>{item.action.text}</div> */}
-                            <img className="w-[200px] mx-4 carousel-item" src={IMG_CDN_URL +item.imageId} alt={item.accessibility.altText} />
+                            <img className="w-[150px] mx-4" src={IMG_CDN_URL +item.imageId} alt={item.accessibility.altText} />
                         </div>
                     )}
                 </div>

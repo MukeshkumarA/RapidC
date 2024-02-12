@@ -36,16 +36,16 @@ const ShimmerComponent = () => {
 export default ShimmerComponent;
 
 
-export const TopItemsShimmer = () => {
-    return (
-      <div className="flex justify-center p-5" key="div2">
-            {[...Array(5)].map((_, index) => (
-              <div key={index} className='bg-gray-700'>
-              {/* <div>{item.action.text}</div> */}
-                <img className="w-[140px] mx-4" src="" alt="" />
-            </div>
-            ))}
+// export const TopItemsShimmer = () => {
+//     return (
+//       <div className="flex justify-center p-5" key="div2">
+//             {[...Array(5)].map((_, index) => (
+//               <div key={index} className='bg-gray-700'>
+//               {/* <div>{item.action.text}</div> */}
+//                 <img className="w-[140px] mx-4" src="" alt="" />
+//             </div>
+//             ))}
   
-      </div>
-    );
-}
+//       </div>
+//     );
+// }
