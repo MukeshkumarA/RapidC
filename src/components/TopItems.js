@@ -9,7 +9,8 @@ const TopItems = () => {
     const [stIndex, setStIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(5);
     // const  itemsToShow = topItems?.slice(stIndex, endIndex);
-    const itemsToShow = topItems;
+    // const itemsToShow = topItems;
+    const [itemsToShow, setItemsToShow] = useState(topItems);
 
     useEffect(() => {
         getTopItems();
@@ -23,18 +24,21 @@ const TopItems = () => {
       }
 
     const moveLeft = () => {
-        if(stIndex > 0)
-        {
-            setStIndex(stIndex - 5);
-            setEndIndex(endIndex - 5);
-        }
+        // if(stIndex > 0)
+        // {
+        //     setStIndex(stIndex - 5);
+        //     setEndIndex(endIndex - 5);
+        // }
+        setItemsToShow(topItems.slice(0,10));
+
     }
     const moveRight = () => {
-        if(endIndex < TopItemsList.length)
-        {
-            setStIndex(stIndex + 5);
-            setEndIndex(endIndex + 5);
-        }
+        // if(endIndex < TopItemsList.length)
+        // {
+        //     setStIndex(stIndex + 5);
+        //     setEndIndex(endIndex + 5);
+        // }
+
     }
 
     return (
@@ -45,7 +49,7 @@ const TopItems = () => {
                         <button key="right-button" className='bg-blue-700 p-2' onClick={moveRight}>Right</button>
                 </div>
 
-                <div className="mx-[10%] p-5 carousel rounded-box" key="div2" >
+                <div className="mx-[10%] p-5 flex overflow-x-scroll overflow-y-hidden scrollbar-hide" key="div2" >
                     {itemsToShow?.map(item => 
                         <div key={item.id} className='carousel-item'>
                             {/* <div>{item.action.text}</div> */}
