@@ -11,6 +11,7 @@
   "author": "Mukesh kumar",
   "license": "ISC",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "daisyui": "^4.6.1",
     "parcel": "^2.11.0",
     "postcss": "^8.4.33",

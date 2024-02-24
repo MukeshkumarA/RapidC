@@ -27,7 +27,7 @@ const ShimmerComponent = () => {
   return (
    <div className="flex justify-center m-[50px] flex-wrap">
       {[...Array(11)].map((_,index) => (
-        <ShimmerCard />
+        <ShimmerCard  key={index} />
       ))}
    </div>
   )

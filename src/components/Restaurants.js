@@ -3,6 +3,7 @@ import ShimmerComponent from "./Shimmer";
 import { IMG_CDN_URL } from "../config";
 import { useEffect, useState } from "react";
 import SearchComponent from "./SearchComponent";
+import { Link } from "react-router-dom";
 
 const RestaurantCard = ({
   name,
@@ -87,7 +88,9 @@ export const RestaurantGrid = () => {
        <div className="flex justify-center m-[50px] flex-wrap">
         {filteredRestaurants?.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            <Link to={"/restaurant/" + restaurant?.info?.id}>
+              <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            </Link>
           );
         })}
       </div>
