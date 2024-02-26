@@ -1,0 +1,116 @@
+import React, { useState, useContext } from 'react';
+import UserContext from '../utils/UserContext';
+import { useNavigate } from "react-router-dom";
+
+const LoginForm = () => {
+  const [userName, setUserName] = useState('');
+  const [gmail, setGmail] = useState('');
+  const [userNameError, setUserNameError] = useState('');
+  const [gmailError, setGmailError] = useState('');
+  const { updateUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Assuming you have a function to send OTP, you can call it here
+    // await sendOTP();
+    submit();
+  };
+
+  const sendOTP = () => {
+    // Code to send OTP to the entered Gmail address
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    console.log('OTP sent to:', gmail);
+    console.log('otp ', otp);
+  };
+
+    const validateUserName = (userName) => {
+        if (userName.trim() === "" || userName === null) {
+            return "UserName should not be empty.";
+        } else if (!isNaN(userName)) {
+            return "UserName should not be a number.";
+        }
+        return null; // No error
+    };
+
+    const validateEmail = (gmail) => {
+        if (gmail.trim() === "" || gmail === null) {
+            return "Email field cannot be left blank.";
+        }
+        const gmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!gmailRegex.test(gmail)) {
+            return "Invalid email format.";
+        }
+        return null; // No error
+    };
+
+    const submit = () => {
+        const userNameError = validateUserName(userName);
+        const gmailError = validateEmail(gmail);
+
+        if (userNameError) {
+            setUserNameError(userNameError);
+        } else {
+            setUserNameError(null); // Clear previous error
+        }
+
+        if (gmailError) {
+            setGmailError(gmailError);
+        } else {
+            setGmailError(null); // Clear previous error
+        }
+
+        if (!userNameError && !gmailError) {
+            // Update user data in context
+            updateUser({ userName, gmail, isLoggedIn: true });
+            alert("Logged in successfully");
+            navigate("/");
+        }
+    };
+
+
+  return (
+    <div className="max-w-sm mx-auto mt-10">
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+            Username
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          {userNameError && <p className='text-red-500'>{userNameError}</p>}
+        </div>
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gmail">
+            Gmail
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="gmail"
+            type="email"
+            placeholder="example@gmail.com"
+            value={gmail}
+            onChange={(e) => setGmail(e.target.value)}
+          />
+          {gmailError && <p className='text-red-500'>{gmailError}</p>}
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default LoginForm;

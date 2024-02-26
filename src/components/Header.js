@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Title from './Title';
 import { Link } from 'react-router-dom';
+import UserContext from '../utils/UserContext';
+import UserProfile from './UserProfile';
 
 const Header= () => {
+  const {user} = useContext(UserContext);
+
     return (
       <>
        <div className="flex justify-around shadow-lg py-5">
@@ -25,8 +29,15 @@ const Header= () => {
                     Contact
                   </Link>
                 </li>
-                <li>Sign in</li>
                 <li>Cart</li>
+                <li>
+                  {!user.isLoggedIn?
+                  <Link to="/login">
+                    Log in
+                  </Link>:
+                  <UserProfile />
+                   }
+                </li>
             </ul>
          </div>
        </div>

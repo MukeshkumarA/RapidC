@@ -20,7 +20,6 @@ const TopItems = () => {
       catch(err){
         console.log(err);
       }
-        
       },[]);
     
       async function getTopItems(){
