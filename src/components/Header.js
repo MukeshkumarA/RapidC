@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import Title from './Title';
 import { Link } from 'react-router-dom';
-import UserContext from '../utils/UserContext';
+import { UserContext, ThemeContext } from '../utils/Context';
 import UserProfile from './UserProfile';
+import { useTheme } from '../utils/ContextProvider';
 
 const Header= () => {
   const {user} = useContext(UserContext);
+  const {theme, toggleTheme} = useTheme();
 
     return (
       <>
@@ -39,6 +41,13 @@ const Header= () => {
                    }
                 </li>
             </ul>
+         </div>
+         <div>
+         {theme === "light" ? (
+          <span className='cursor-pointer' onClick={toggleTheme} role="img" aria-label="Toggle Dark Mode">🌙</span>
+          ) : (
+              <span className='cursor-pointer' onClick={toggleTheme} role="img" aria-label="Toggle Light Mode">☀️</span>
+          )}
          </div>
        </div>
         

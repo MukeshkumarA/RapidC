@@ -65,6 +65,7 @@ export const ItemsCard = ({itemCard}) => {
             <p>{itemCard.card.info.description}</p>
             <p>Price: {itemCard.card.info.price}</p>
             <img className='w-[80px]' src={IMG_CDN_URL + itemCard.card.info.imageId} alt={itemCard.card.info.name}/>
+            <button className='p-2 border-2 rounded-lg text-white bg-orange-600'>Add item</button>
         </div>
     )
 }
