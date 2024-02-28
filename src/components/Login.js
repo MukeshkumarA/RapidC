@@ -63,7 +63,7 @@ const LoginForm = () => {
         if (!userNameError && !gmailError) {
             // Update user data in context
             updateUser({ userName, gmail, isLoggedIn: true });
-            alert("Logged in successfully");
+            alert("Successfully logged in");
             navigate("/");
         }
     };
