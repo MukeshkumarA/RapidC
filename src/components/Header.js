@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import { UserContext, ThemeContext } from '../utils/Context';
 import UserProfile from './UserProfile';
 import { useTheme } from '../utils/ContextProvider';
+import { useSelector } from 'react-redux';
 
 const Header= () => {
   const {user} = useContext(UserContext);
   const {theme, toggleTheme} = useTheme();
+
+  const cartItems = useSelector(store => store.cart.items);  
+  console.log(cartItems);
 
     return (
       <>
@@ -15,7 +19,6 @@ const Header= () => {
          <Title/>
          <div>
             <ul className="flex space-x-8 mt-3">
-                <li>Search</li>
                 <li>
                   <Link to="/">
                     Home
@@ -31,7 +34,11 @@ const Header= () => {
                     Contact
                   </Link>
                 </li>
-                <li>Cart</li>
+                <li>
+                  <Link to="/cart">
+                    Cart - {cartItems.length} items
+                  </Link>
+                </li>
                 <li>
                   {!user.isLoggedIn?
                   <Link to="/login">

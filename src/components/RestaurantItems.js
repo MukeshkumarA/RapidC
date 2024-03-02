@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { IMG_CDN_URL } from '../config';
-import { Container } from 'postcss';
+import { useDispatch } from 'react-redux';
+import { addToCart, clearCart } from '../utils/cartSlice';
 
-const RestaurantItems = ({ restaurantItems, isVisible, setIsVisible, menuIndex }) => {
+const RestaurantItems = ({ restaurantData, restaurantItems, isVisible, setIsVisible, menuIndex }) => {
 
   // Check if categories exist
   if (restaurantItems?.card?.categories && restaurantItems?.card?.categories?.length > 0) {
@@ -28,7 +29,7 @@ const RestaurantItems = ({ restaurantItems, isVisible, setIsVisible, menuIndex }
 
             {category?.itemCards?.map((itemCard, itemIndex) => (
               <div key={itemIndex}>
-                { isVisible &&  <ItemsCard itemCard={itemCard}/> }
+                { isVisible &&  <ItemsCard restaurantData={restaurantData} itemCard={itemCard}/> }
               </div>
             ))}
           </div>
@@ -48,7 +49,7 @@ const RestaurantItems = ({ restaurantItems, isVisible, setIsVisible, menuIndex }
         
         {restaurantItems?.card?.itemCards?.map((itemCard, index) => (
           <div key={index}>
-            { isVisible && <ItemsCard itemCard={itemCard}/> }
+            { isVisible && <ItemsCard restaurantData={restaurantData} index={index} itemCard={itemCard}/> }
           </div>
         ))}
       </div>
@@ -58,14 +59,25 @@ const RestaurantItems = ({ restaurantItems, isVisible, setIsVisible, menuIndex }
 
 export default RestaurantItems;
 
-export const ItemsCard = ({itemCard}) => {
+export const ItemsCard = ({itemCard, restaurantData}) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (itemCard) => {
+    console.log(itemCard);
+      dispatch(addToCart(itemCard));
+  }
+
     return(
+      
         <div>
+          {/* <button className='border-2 bg-green-400 p-3' onClick={handleAddItem(itemCard)}>Add</button> */}
             <h2 className='font-semibold'>{itemCard.card.info.name}</h2>
             <p>{itemCard.card.info.description}</p>
             <p>Price: {itemCard.card.info.price}</p>
             <img className='w-[80px]' src={IMG_CDN_URL + itemCard.card.info.imageId} alt={itemCard.card.info.name}/>
-            <button className='p-2 border-2 rounded-lg text-white bg-orange-600'>Add item</button>
+            {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-600'>Add item</button> */}
+            <button className='p-1 bg-green-200' onClick={() => handleAddItem(itemCard)}>Add</button>
         </div>
     )
 }

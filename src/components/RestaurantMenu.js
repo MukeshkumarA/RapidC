@@ -19,13 +19,15 @@ const RestaurantMenu = () => {
 
     async function getRestaurantInfo() {
         // const data = await fetch (`https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D12.9715987%26lng%3D77.5945627%26restaurantId%3D${id}`);
+        // const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0826802&lng=80.2707184&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`);
         const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0826802&lng=80.2707184&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`);
+
         const json = await data.json();
         console.log(json.data);
-        setRestaurantData(json.data?.cards[2]?.card?.card?.info);
-        console.log(json.data?.cards[2]?.card?.card?.info);
-        setRestaurantMenu(json?.data?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards);
-        console.log(json?.data?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards);
+        setRestaurantData(json.data?.cards[0]?.card?.card?.info);
+        console.log(json.data?.cards[0]?.card?.card?.info);
+        setRestaurantMenu(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
+        console.log(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
     }
 
     // <div>
@@ -65,7 +67,7 @@ const RestaurantMenu = () => {
             <div className="text-center">
                 {/* <h1>RestaurantId:{restaurantId}</h1> */}
                 <div>
-                    <img className="w-[250px]" src={IMG_CDN_URL + restaurantData?.cloudinaryImageId} alt={restaurantData?.name} />
+                    <img className="" src={IMG_CDN_URL + restaurantData?.cloudinaryImageId} alt={restaurantData?.name} />
                 </div>
                 <div>
                     <h2 className="text-3xl">{restaurantData?.name}</h2>
@@ -81,7 +83,7 @@ const RestaurantMenu = () => {
                     return (
                         (item.card.card.categories || item.card.card.itemCards) ? (
                             <div key={index}>
-                                <RestaurantItems  restaurantItems={item.card} menuIndex={index} isVisible={index == isVisible} setIsVisible={setIsVisible} />
+                                <RestaurantItems restaurantData={restaurantData}  restaurantItems={item.card} menuIndex={index} isVisible={index == isVisible} setIsVisible={setIsVisible} />
                                 <br />
                                 <hr />
                             </div>

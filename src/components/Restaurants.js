@@ -13,7 +13,7 @@ const RestaurantCard = ({
   areaName,
 }) => {
   return (
-    <div className="w-[280px] mr-[50px] mb-10 text-left">
+    <div className="w-[280px] mr-[50px] mb-10 text-left hover:scale-95 transition-transform">
       <img
         className="w-full h-[160px] object-cover rounded-lg"
         src={IMG_CDN_URL + cloudinaryImageId}
@@ -88,8 +88,8 @@ export const RestaurantGrid = () => {
        <div className="flex justify-center m-[50px] flex-wrap">
         {filteredRestaurants?.map((restaurant) => {
           return (
-            <Link to={"/restaurant/" + restaurant?.info?.id}>
-              <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            <Link key={restaurant.info.id} to={"/restaurant/" + restaurant?.info?.id}>
+              <RestaurantCard {...restaurant.info}  />
             </Link>
           );
         })}
