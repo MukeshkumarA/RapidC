@@ -76,8 +76,8 @@ export const ItemsCard = ({itemCard, restaurantData}) => {
             <p>{itemCard.card.info.description}</p>
             <p>Price: {itemCard.card.info.price}</p>
             <img className='w-[80px]' src={IMG_CDN_URL + itemCard.card.info.imageId} alt={itemCard.card.info.name}/>
-            {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-600'>Add item</button> */}
-            <button className='p-1 bg-green-200' onClick={() => handleAddItem(itemCard)}>Add</button>
+            {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-500'>Add item</button> */}
+            <button className='p-1 bg-green-200 hover:bg-green-500 hover:text-white' onClick={() => handleAddItem(itemCard)}>Add</button>
         </div>
     )
 }
