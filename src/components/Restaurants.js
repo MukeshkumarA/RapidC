@@ -4,6 +4,7 @@ import { IMG_CDN_URL } from "../config";
 import { useEffect, useState } from "react";
 import SearchComponent from "./SearchComponent";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon,faStar   } from "./FontAwesome";
 
 const RestaurantCard = ({
   name,
@@ -13,16 +14,16 @@ const RestaurantCard = ({
   areaName,
 }) => {
   return (
-    <div className="w-[280px] mr-[50px] mb-10 text-left hover:scale-95 transition-transform">
+    <div className="font-sans w-[280px] mr-[50px] mb-10 text-left hover:scale-95 transition-transform">
       <img
         className="w-full h-[160px] object-cover rounded-lg"
         src={IMG_CDN_URL + cloudinaryImageId}
         alt={name}
       />
-      <div>
+      <div className="ml-1">
         <h1 className="font-bold text-semiTransparent-blue">{name}</h1>
         <h1 className="font-bold text-semiTransparent-blue">
-          {avgRating} stars
+          {avgRating} <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
         </h1>
         <h2>
           {cuisines?.length > 3
@@ -33,6 +34,27 @@ const RestaurantCard = ({
       </div>
     </div>
   );
+  // return (
+  //   <div className="w-72 border-none border-gray-300 bg-pink-50 rounded-lg overflow-hidden shadow-lg m-4 hover:scale-95 transition-transform">
+  //     <img
+  //       className="w-full h-40 object-cover"
+  //       src={IMG_CDN_URL + cloudinaryImageId}
+  //       alt={name}
+  //     />
+  //     <div className="p-4">
+  //       <h1 className="text-xl font-bold mb-2 text-gray-800">{name}</h1>
+  //       <h1 className="text-lg font-semibold mb-2 text-gray-600">
+  //         {avgRating} stars
+  //       </h1>
+  //       <h2 className="mb-2 text-gray-600">
+  //         {cuisines?.length > 3
+  //           ? cuisines?.sort().slice(0, 3).join(", ") + "..."
+  //           : cuisines?.join(", ")}
+  //       </h2>
+  //       <h2 className="text-gray-600">{areaName}</h2>
+  //     </div>
+  //   </div>
+  // );
 };
 
 export const RestaurantGrid = () => {
@@ -95,7 +117,7 @@ export const RestaurantGrid = () => {
         })}
       </div>
       :
-      <div className="flex justify-center text-red-500">
+      <div className="flex justify-center  text-red-500">
          <h2>No restaurants found...</h2>
         </div>
       }

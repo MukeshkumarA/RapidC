@@ -4,7 +4,8 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 // import '@splidejs/react-splide/css';
 // import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/dist/css/themes/splide-default.min.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -17,6 +18,7 @@ const TopItems = () => {
   // const itemsToShow = topItems;
   const [itemsToShow, setItemsToShow] = useState([]);
   const containerRef = useRef(null);
+  const splideRef = useRef(null);
 
   useEffect(() => {
     getTopItems();
@@ -33,24 +35,36 @@ const TopItems = () => {
 
 
 
+  // const moveLeft = () => {
+  //   if (containerRef.current) {
+  //     containerRef.current.scrollBy({
+  //       left: -520, // Adjust this value based on your requirement
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  //   alert("sample");
+  // };
+
+  // const moveRight = () => {
+  //   if (containerRef.current) {
+  //     containerRef.current.scrollBy({
+  //       left: 520, // Adjust this value based on your requirement
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  //   alert("sample");
+  // };
+
   const moveLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({
-        left: -520, // Adjust this value based on your requirement
-        behavior: 'smooth',
-      });
+    if (splideRef.current) {
+      splideRef.current.go('-3'); // Move backward by 3 slides
     }
-    alert("sample");
   };
 
   const moveRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollBy({
-        left: 520, // Adjust this value based on your requirement
-        behavior: 'smooth',
-      });
+    if (splideRef.current) {
+      splideRef.current.go('+3'); // Move forward by 3 slides
     }
-    alert("sample");
   };
 
   const sample = () => {
@@ -59,30 +73,29 @@ const TopItems = () => {
 
   return (
     <>
-      <div className=''>
-        <div className='flex justify-end mr-5 text-white' key="div1">
-          <button key="left-button" className='mx-10 bg-blue-700 border-2 p-2' onClick={moveLeft}>Left</button>
-          <button key="right-button" className='bg-blue-700 p-2' onClick={moveRight}>Right</button>
+      <div className='relative'>
+        <div className='z-50 absolute top-[-16] right-[21%] text-white ' key="div1">
+          <button key="left-button" className='mx-2 px-2  py-1 rounded-full  border focus:border-black' onClick={moveLeft}><FontAwesomeIcon className='text-black' icon={faArrowLeft} /></button>
+          <button key="right-button" className='mx-2 px-2  py-1 rounded-full border  focus:border-black' onClick={moveRight}><FontAwesomeIcon className='text-black' icon={faArrowRight} /></button>
         </div>
-        {/* <div className='flex justify-end mr-5 text-white' key="div1">
-          <button key="left-button" className='mx-10 bg-blue-700 border-2 p-2' onClick={() => containerRef.current.scrollBy({ left: -520, behavior: 'smooth' })}>Left</button>
-          <button key="right-button" className='bg-blue-700 p-2' onClick={() => containerRef.current.scrollBy({ left: 520, behavior: 'smooth' })}>Right</button>
-        </div> */}
 
-        <div className="mx-[15%] py-5 " key="div2" ref={containerRef}>
+        <div className="mt-12 mx-[15%] py-5 " key="div2" ref={containerRef}>
           <Splide options={{
             perPage: 5,
             arrows: false,
             pagination: false,
             drag: "free",
             gap: "",
+            slide: true
           }}
+            ref={splideRef}
             onMove={(slide) => {
               containerRef.current.scrollTo({
                 left: slide.index * 520,
                 behavior: 'smooth',
               });
-            }}>
+            }}
+          >
             {itemsToShow?.map(item => {
               return (
                 <SplideSlide key={item.id}>
@@ -95,9 +108,6 @@ const TopItems = () => {
             }
             )}
           </Splide>
-          <div className='flex justify-end mr-5 text-white' key="div1">
-
-          </div>
         </div>
       </div>
     </>

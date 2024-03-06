@@ -21,45 +21,27 @@ const Header = () => {
         <Title />
         <div>
           <ul className="flex space-x-8 mt-3 font-semibold">
-            <li>
-              <Link to="/">
-                Home
-              </Link>
-            </li>
-            {/* <li>
-              <Link to="/about">
-                About
-              </Link>
-            </li> */}
-            {/* <li>
-              <Link to="/contact">
-                Contact
-              </Link>
-            </li> */}
-            <li>
-              <Link to="/cart">
-                Cart - {cartItems.length} items
-              </Link>
-            </li>
-            <li>
-              {!user.isLoggedIn ?
-                <Link to="/login">
-                  Log in
-                </Link> :
-                <UserProfile />
-              }
-            </li>
-            <li>
-              <div>
-                {theme === "light" ? (
-                  // <span className='cursor-pointer' onClick={toggleTheme} role="img" aria-label="Toggle Dark Mode">🌙</span>
+            {[
+              { to: '/', text: 'Home' },
+              // { to: '/about', text: 'About' },
+              // { to: '/contact', text: 'Contact' },
+              { to: '/cart', text: 'Cart - ' + cartItems.length + ' items' },
+              { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
+              {
+                to: '/',
+                text: theme === 'light' ? (
                   <span className='cursor-pointer text-xl text-gray-800' onClick={toggleTheme}  ><FontAwesomeIcon icon={faMoon} /></span>
                 ) : (
-                  // <span className='cursor-pointer' onClick={toggleTheme} role="img" aria-label="Toggle Light Mode">☀️</span>
                   <span className='cursor-pointer text-xl text-white-800' onClick={toggleTheme} ><FontAwesomeIcon icon={faSun} /></span>
-                )}
-              </div>
-            </li>
+                )
+              }
+            ].map(({ to, text }, index) => (
+              <li key={index} className='hover:font-bold'>
+                <Link to={to}>
+                  {text}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

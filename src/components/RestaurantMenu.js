@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"; // used to read the dynamic url pa
 import { IMG_CDN_URL } from "../config";
 import RestaurantItems from "./RestaurantItems";
 import ShimmerComponent from "./Shimmer";
+import { FontAwesomeIcon,faStar } from "./FontAwesome";
+
 
 const RestaurantMenu = () => {
     const { restaurantId } = useParams();
@@ -25,7 +27,7 @@ const RestaurantMenu = () => {
         const json = await data.json();
         console.log(json.data);
         setRestaurantData(json.data?.cards[0]?.card?.card?.info);
-        console.log(json.data?.cards[0]?.card?.card?.info);
+        console.log("restaurant data " , json.data?.cards[0]?.card?.card?.info);
         setRestaurantMenu(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
         console.log(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
     }
@@ -63,19 +65,21 @@ const RestaurantMenu = () => {
 
 
     return (!restaurantData) ? <ShimmerComponent /> : (
-        <div className="flex flex-col items-center">
-            <div className="text-center">
+        <div className="flex flex-col items-center relative mt-[5%]">
+            <div className="flex justify-around w-full mb-5">
                 {/* <h1>RestaurantId:{restaurantId}</h1> */}
-                <div>
-                    <img className="" src={IMG_CDN_URL + restaurantData?.cloudinaryImageId} alt={restaurantData?.name} />
-                </div>
-                <div>
-                    <h2 className="text-3xl">{restaurantData?.name}</h2>
-                    <h2>{restaurantData?.areaName}</h2>
-                    <h2>{restaurantData?.locality}</h2>
-                    <h3>{restaurantData?.avgRating} stars</h3>
-                    <h3>{restaurantData?.totalRatingsString}</h3>
+                <div className="mb-5">
+                    <h2 className="text-2xl font-semibold mb-3">{restaurantData?.name}</h2>
+                    {/* <h2>{restaurantData?.areaName}</h2> */}
+                    <h2 className="text-sm">{restaurantData?.cuisines?.join(', ')}</h2>
+                    <h3 className="text-sm">{restaurantData?.locality}</h3>
+                    <h3 className="text-sm">{restaurantData?.city}</h3>
                     {/* <h3>{restaurantData}</h3> */}
+                </div>
+                <div className="border max-h-20 p-3 border-gray rounded-lg text-center">
+                    <h3 className="text-sm">{restaurantData?.avgRating} <FontAwesomeIcon className="text-yellow-500" icon={faStar} /></h3>
+                    <hr className="my-2"></hr>
+                    <h3 className="text-sm">{restaurantData?.totalRatingsString}</h3>
                 </div>
             </div>
 

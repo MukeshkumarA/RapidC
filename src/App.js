@@ -11,6 +11,7 @@ import Login from "./components/Login";
 import { ThemeProvider, UserProvider } from "./utils/ContextProvider";
 import { Provider } from "react-redux";
 import store from "./utils/Store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // chunking | code splitting | dynamic bundling | lazy loading | on demand loading | dynamic import
 const Cart = lazy(() => import("./components/Cart"));

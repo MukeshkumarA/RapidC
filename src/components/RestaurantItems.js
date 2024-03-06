@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { IMG_CDN_URL } from '../config';
 import { useDispatch } from 'react-redux';
 import { addToCart, clearCart } from '../utils/cartSlice';
+import { FontAwesomeIcon,faStar, faAngleUp, faAngleDown   } from "./FontAwesome";
 
 const RestaurantItems = ({ restaurantData, restaurantItems, isVisible, setIsVisible, menuIndex }) => {
 
@@ -10,16 +11,18 @@ const RestaurantItems = ({ restaurantData, restaurantItems, isVisible, setIsVisi
     // <button className='p-2 border-2 rounded-lg' onClick={() => setVisible(!isVisible)} type="button">{isVisible ? "Hide" : "Show"}</button>
     return (
       <div>
-        <h1 className='font-bold text-lg'>{restaurantItems?.card?.title} ({restaurantItems?.card?.categories?.length})</h1>
-        {isVisible ? (
-            <button className='p-2 border-2 rounded-lg' onClick={() => setIsVisible(-1)} type="button">Hide</button>
-            ) : (
-                <button className='p-2 border-2 rounded-lg' onClick={() => setIsVisible(menuIndex)} type="button">Show</button>
-            )}
+        <div className='flex justify-between mb-2'>
+          <h1 className='font-bold text-lg'>{restaurantItems?.card?.title} ({restaurantItems?.card?.categories?.length})</h1>
+          {isVisible ? (
+              <button className='p-2' onClick={() => setIsVisible(-1)} type="button"><FontAwesomeIcon icon={faAngleUp} /></button>
+              ) : (
+                  <button className='p-2' onClick={() => setIsVisible(menuIndex)} type="button"><FontAwesomeIcon icon={faAngleDown} /></button>
+              )}
+            </div>
 
         {restaurantItems?.card?.categories?.map((category, index) => (
           <div key={index}>
-            <h1 className='font-bold text-xl'>{category.title}  - {category.itemCards.length}</h1>
+            <h1 className='font-semibold text-orange-400'>{category.title}  - {category.itemCards.length}</h1>
             
             {/* {categoryVisible ? (
             <button className='p-2 border-2 rounded-lg' onClick={() => setCategoryVisible(-1)} type="button">In</button>
@@ -40,12 +43,14 @@ const RestaurantItems = ({ restaurantData, restaurantItems, isVisible, setIsVisi
     // Render item cards directly
     return (
       <div>
-        <h1 className='font-bold'>{restaurantItems?.card?.title} ({restaurantItems?.card?.itemCards?.length})</h1>
-        {isVisible ? (
-          <button className='p-2 border-2 rounded-lg' onClick={() => setIsVisible(-1)} type="button">Hide</button>
-          ) : (
-            <button className='p-2 border-2 rounded-lg' onClick={() => setIsVisible(menuIndex)} type="button">Show</button>
-        )}
+        <div className='flex justify-between mb-2'>
+          <h1 className='font-bold'>{restaurantItems?.card?.title} ({restaurantItems?.card?.itemCards?.length})</h1>
+          {isVisible ? (
+              <button className='p-2 text-xl' onClick={() => setIsVisible(-1)} type="button"><FontAwesomeIcon icon={faAngleUp} /></button>
+              ) : (
+                  <button className='p-2 text-xl' onClick={() => setIsVisible(menuIndex)} type="button"><FontAwesomeIcon icon={faAngleDown} /></button>
+              )}
+          </div>
         
         {restaurantItems?.card?.itemCards?.map((itemCard, index) => (
           <div key={index}>
@@ -70,14 +75,18 @@ export const ItemsCard = ({itemCard, restaurantData}) => {
 
     return(
       
-        <div>
+        <div className='my-8 flex justify-between'>
           {/* <button className='border-2 bg-green-400 p-3' onClick={handleAddItem(itemCard)}>Add</button> */}
-            <h2 className='font-semibold'>{itemCard.card.info.name}</h2>
-            <p>{itemCard.card.info.description}</p>
-            <p>Price: {itemCard.card.info.price}</p>
-            <img className='w-[80px]' src={IMG_CDN_URL + itemCard.card.info.imageId} alt={itemCard.card.info.name}/>
-            {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-500'>Add item</button> */}
-            <button className='p-1 bg-green-200 hover:bg-green-500 hover:text-white' onClick={() => handleAddItem(itemCard)}>Add</button>
+          <div>
+              <h2 className='font-semibold text-'>{itemCard.card.info.name}</h2>
+              <p>₹{itemCard?.card?.info?.price / 100}</p>
+              <p className='text-sm font-light'>{itemCard?.card?.info?.description}</p>
+            </div>
+            <div className='relative w-[110px]'>
+              <img className='w-full object-contain rounded-lg' src={IMG_CDN_URL + itemCard?.card?.info?.imageId} alt={itemCard?.card?.info?.name}/>
+              {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-500'>Add item</button> */}
+              <button className='z-50 bottom-[-5] left-5 absolute px-5 py-1 font-semibold rounded-md text-orange-500 border bg-white hover:border-orange-500' onClick={() => handleAddItem(itemCard)}>Add</button>
+            </div>
         </div>
     )
 }
