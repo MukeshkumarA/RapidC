@@ -1,2 +1,2 @@
-### My first React project
+### React project
 #### RapidCrave - A simple food app.
