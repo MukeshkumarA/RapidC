@@ -1,6 +1,6 @@
 import { IMG_CDN_URL } from "../config";
 
-const FoodItems = ({name, price, imageId, description}) => {
+const FoodItems = ({name, price, imageId, description, quantity}) => {
 
     return (
         <div className=" p-2 m-5 shadow-lg bg-pink-50">
@@ -8,6 +8,7 @@ const FoodItems = ({name, price, imageId, description}) => {
             <h2 className="font-medium">{name}</h2>
             <h3>{description}</h3>
             <h4>Rupees: {price/100}</h4>
+            <h4>quantity : {quantity}</h4>
         </div>
     );
 }

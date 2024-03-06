@@ -5,7 +5,8 @@ import { clearCart } from '../utils/cartSlice';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const cartItems = useSelector((store) => store.cart.items);
+    const cartItems = useSelector((state) => Object.values(state.cart.items)); // Get values (items) from the map
+    console.log(cartItems);
 
     const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ const Cart = () => {
         <div>
             <div className='relative'>
                 <h1 className='p-6 font-bold text-3xl text-center'>Cart Items</h1>
-                {cartItems.length > 0 &&
+                {cartItems.length > 0 && // Check the length of the cartItems array
                     <button className='absolute p-2 rounded-lg text-xl bg-green-300 right-[15%] top-5' onClick={() => handleClick()}>Clear cart</button>
                 }
 
@@ -26,18 +27,16 @@ const Cart = () => {
 
             {cartItems.length > 0 ? (
                 cartItems.map(item => (
-                    <FoodItems key={item?.card?.info?.id} {...item?.card?.info} />
+                    <FoodItems key={item?.card?.info?.id} {...item?.card?.info} quantity={item.quantity} />
                 ))
             ) : (
                 <div className="text-center">
                     <h2 className='my-1 text-xl font-semibold'>Your cart is empty</h2>
-                    <h2>You can go to home page to view more restaurants</h2>
+                    <h2>You can go to the home page to view more restaurants</h2>
                     <Link to="/">
                         <button className='mt-5 text-xl bg-orange-400 text-white p-2 rounded-sm'>See Restaurants Near You</button>
                     </Link>
-
                 </div>
-
             )}
 
         </div>

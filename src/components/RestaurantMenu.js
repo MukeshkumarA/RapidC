@@ -87,10 +87,10 @@ const RestaurantMenu = () => {
                 {restaurantMenu?.map((item, index) => {
                     return (
                         (item.card.card.categories || item.card.card.itemCards) ? (
-                            <div key={index}>
+                            <div key={index} className='mb-3'>
                                 <RestaurantItems restaurantData={restaurantData}  restaurantItems={item.card} menuIndex={index} isVisible={index == isVisible} setIsVisible={setIsVisible} />
                                 <br />
-                                <hr />
+                                <hr className="h-3 bg-green-100"/>
                             </div>
                         ) : null
                     );
