@@ -25,7 +25,7 @@ const Header = () => {
               { to: '/', text: 'Home' },
               // { to: '/about', text: 'About' },
               // { to: '/contact', text: 'Contact' },
-              { to: '/cart', text: 'Cart - ' + cartItems.length + ' items' },
+              { to: '/cart', text: 'Cart - ' + cartItems.length},
               { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
               {
                 to: '/',

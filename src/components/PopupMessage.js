@@ -9,7 +9,7 @@ const PopupMessage = ({ message, position, onClose }) => {
             const timeout = setTimeout(() => {
                 setShowMessage(false);
                 onClose();
-            }, 1000);
+            }, 800);
           return () => clearTimeout(timeout);
         }
     },[showMessage]);
