@@ -1,29 +1,48 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import FoodItems from './FoodItems';
 import { clearCart } from '../utils/cartSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon, faTrash } from "./FontAwesome";
+import { UserContext } from '../utils/Context';
+
+
 
 const Cart = () => {
-    const cartItems = useSelector((state) => Object.values(state.cart.items)); // Get values (items) from the map
+    const cartItems = useSelector((state) => state.cart.items);
     console.log(cartItems);
-
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    // Calculate total number of items in the cart
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    // Calculate total amount in the cart
+    const totalAmount = cartItems.reduce((total, item) => total + (item.card.info.price / 100) * item.quantity, 0);
 
     const handleClick = () => {
         dispatch(clearCart());
     }
 
+    const handleProceedToPay = () => {
+        if (!user.isLoggedIn) {
+            alert("Please login to proceed to payment");
+            navigate('/login');
+        }
+        else {
+            navigate('/payment');
+        }
+    }
+
+
     return (
         <div>
             <div className='relative'>
-                <h1 className='p-6 font-bold text-3xl text-center'>Cart Items</h1>
+                <h1 className='p-6 font-semibold text-4xl text-center'>Cart Items</h1>
                 {cartItems.length > 0 && // Check the length of the cartItems array
-                    <button className='absolute p-2 rounded-lg text-xl bg-green-300 right-[15%] top-5' onClick={() => handleClick()}>Clear cart</button>
+                    <button className='absolute px-3 py-2 rounded-sm text-xl bg-green-300 right-[15%] top-5' onClick={() => handleClick()}><FontAwesomeIcon className="" icon={faTrash} /></button>
                 }
-
             </div>
-
 
             {cartItems.length > 0 ? (
                 cartItems.map(item => (
@@ -36,6 +55,17 @@ const Cart = () => {
                     <Link to="/">
                         <button className='mt-5 text-xl bg-orange-400 text-white p-2 rounded-sm'>See Restaurants Near You</button>
                     </Link>
+                </div>
+            )}
+            {cartItems.length > 0 && (
+                <div className='w-[30%] mx-auto text-center mt-10'>
+                    <div className="mt-4 flex w- justify-between font-bold">
+                        <p>To Pay</p>
+                        <p>₹ {totalAmount.toFixed(2)}</p>
+                    </div>
+                    <div className="mt-4">
+                        <button className='p-3 bg-orange-400 w-full rounded-sm text-white' onClick={handleProceedToPay}>Proceed to pay</button>
+                    </div>
                 </div>
             )}
 

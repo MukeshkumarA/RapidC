@@ -1,10 +1,11 @@
-import { RestaurantList } from "../data/restaurantsData";
+// import { RestaurantList } from "../data/restaurantsData";
 import ShimmerComponent from "./Shimmer";
 import { IMG_CDN_URL } from "../config";
 import { useEffect, useState } from "react";
 import SearchComponent from "./SearchComponent";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon,faStar   } from "./FontAwesome";
+import Footer from './Footer';
 
 const RestaurantCard = ({
   name,
@@ -122,6 +123,7 @@ export const RestaurantGrid = () => {
         </div>
       }
 
+      <Footer />
     </div>
   );
 };

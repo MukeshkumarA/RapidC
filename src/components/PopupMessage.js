@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const PopupMessage = ({ message, position, onClose }) => {
+const PopupMessage = ({ message, position, onClose, closingTime }) => {
 
     const [showMessage, setShowMessage] = useState(true);
     
@@ -9,7 +9,7 @@ const PopupMessage = ({ message, position, onClose }) => {
             const timeout = setTimeout(() => {
                 setShowMessage(false);
                 onClose();
-            }, 800);
+            }, closingTime);
           return () => clearTimeout(timeout);
         }
     },[showMessage]);
@@ -19,7 +19,7 @@ const PopupMessage = ({ message, position, onClose }) => {
         {showMessage && (
           <div
             style={position}
-            className="w-[30%] mx-auto inline-block bg-orange-500 p-2 rounded-md shadow-md text-white text-center text-lg font-semibold">
+            className="">
             {message}
           </div>
         )}

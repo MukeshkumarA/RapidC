@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Title from './Title';
 import { Link } from 'react-router-dom';
 import { UserContext, ThemeContext } from '../utils/Context';
-import UserProfile from './UserProfile';
+import UserProfile from './UserProfile/UserProfile';
 import { useTheme } from '../utils/ContextProvider';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +10,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   const { user } = useContext(UserContext);
+  console.log(user);
   const { theme, toggleTheme } = useTheme();
 
   const cartItems = useSelector(store => store.cart.items);

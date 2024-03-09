@@ -130,13 +130,22 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
     setIsPopupOpen(true);
   };
 
+  const defaultPrice = itemCard?.card?.info.defaultPrice;
+
+  // console.log(itemCard?.card?.info);  
+
   return (
     <div>
       <div className="my-8 flex justify-between">
         {/* <button className='border-2 bg-green-400 p-3' onClick={handleAddItem(itemCard)}>Add</button> */}
-        <div className="w-[80%]">
+        <div className="w-[60%]">
           <h2 className="font-semibold text-">{itemCard.card.info.name}</h2>
-          <p>₹{itemCard?.card?.info?.price / 100}</p>
+          {defaultPrice? 
+            <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> :
+            <p>₹{itemCard?.card?.info?.price / 100}</p>
+          }
+          {/* <p>{itemCard.card.info}</p> */}
+          {/* <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> */}
           <p className="text-sm font-light description">
             {itemCard?.card?.info?.description}
           </p>
@@ -162,7 +171,20 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
                 left: "0",
                 right: "0",
                 position: "fixed",
+                backgroundColor: "orange",
+                color: "#fff",
+                width: "30%",
+                margin: "auto",
+                display: "inline-block",
+                background: "#FFA500",
+                padding: "2px",
+                borderRadius: "4px",
+                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                textAlign: "center",
+                fontSize: "1.25rem", // Corresponds to 20px
+                fontWeight: "600"
               }}
+              closingTime = "800"
               onClose={() => setIsPopupOpen(false)}
             />
           )}

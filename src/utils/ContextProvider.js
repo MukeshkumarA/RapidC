@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState({
         userName: '',
         gmail: '',
+        isLoggedIn: false,
     });
 
     const updateUser = (userData) => {

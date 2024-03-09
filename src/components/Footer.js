@@ -7,9 +7,11 @@ const Footer = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <h5 className="p-10 m-10 text-center">
-            All Rights Reserved | Designed with{" "} Copyright &copy;{new Date().getFullYear()}. Developed by {user.name ? `${user.name}` : "Mukesh kumar"}
-        </h5>
+        <div className="flex justify-center items-center mb-10">
+            <h5 className="text-center">
+                All Rights Reserved | {new Date().getFullYear()}. Developed by {user.name ? `${user.name}` : "Mukesh Kumar"}
+            </h5>
+        </div>
     );
 }
 
