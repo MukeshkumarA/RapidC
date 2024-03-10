@@ -173,16 +173,17 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
                 position: "fixed",
                 backgroundColor: "orange",
                 color: "#fff",
-                width: "30%",
+                width: "max-content",
                 margin: "auto",
                 display: "inline-block",
                 background: "#FFA500",
-                padding: "2px",
+                padding: ".5rem 5%",
                 borderRadius: "4px",
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
                 textAlign: "center",
                 fontSize: "1.25rem", // Corresponds to 20px
-                fontWeight: "600"
+                fontWeight: "600",
+                zIndex: "9999"
               }}
               closingTime = "800"
               onClose={() => setIsPopupOpen(false)}

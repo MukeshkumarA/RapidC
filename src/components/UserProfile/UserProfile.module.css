@@ -1,11 +1,6 @@
-/* .user-info {
-    position: absolute;
-    background-color: white;
-    border: 1px solid black;
-    padding: 5px;
-    display: none;
-}
 
-.profile:hover + #user-info {
+.userProfile:hover .userInfo {
+    position: absolute;
     display: block;
-} */
+    z-index: 999;
+}

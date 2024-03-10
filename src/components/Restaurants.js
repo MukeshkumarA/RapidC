@@ -118,8 +118,8 @@ export const RestaurantGrid = () => {
         })}
       </div>
       :
-      <div className="flex justify-center  text-red-500">
-         <h2>No restaurants found...</h2>
+      <div className="flex justify-center  text-red-500 m-16 p-5">
+         <h2 className="text-xl">No restaurants found...</h2>
         </div>
       }
 

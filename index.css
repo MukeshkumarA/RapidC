@@ -43,21 +43,37 @@ h3 {
 }
 
 /* Light theme text color */
-[data-theme="light"] .food-item h1,
+/* [data-theme="light"] .food-item h1,
 [data-theme="light"] .food-item h2,
 [data-theme="light"] .food-item h3 {
   color: #333333;
-  /* Dark gray color */
+  /* Dark gray color 
+} */
+
+
+.food-item h1,
+.food-item h2,
+.food-item h3 {
+  color: #333333 !important; /* Base style for all themes */
 }
 
-/* Dark theme text color */
-[data-theme="dark"] .food-item h1, 
+[data-theme="dark"] .food-item h1,
 [data-theme="dark"] .food-item h2,
-[data-theme="dark"] .food-item h3, 
+[data-theme="dark"] .food-item h3,
 [data-theme="dark"] .food-item p,
-[data-theme="dark"] .food-item button {
-  color: #000000 !important;
-  /* Black color */
+[data-theme="dark"] .food-item button,
+.userInfo h2,  /* Assuming userInfo is not theme-dependent */
+.userInfo button {  /* Assuming userInfo is not theme-dependent */
+  color: #333333 !important; /* Override for dark theme */
+}
+
+
+[data-theme="dark"] .input {
+  color: #fff;
+}
+
+[data-theme="dark"] .searchInput {
+  color: #333333;
 }
 
 /* .user-profile:hover .user-info {

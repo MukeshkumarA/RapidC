@@ -7,7 +7,7 @@ const Footer = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <div className="flex justify-center items-center mb-10">
+        <div className="flex justify-center items-center pb-10">
             <h5 className="text-center">
                 All Rights Reserved | {new Date().getFullYear()}. Developed by {user.name ? `${user.name}` : "Mukesh Kumar"}
             </h5>

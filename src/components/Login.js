@@ -26,9 +26,9 @@ const LoginForm = () => {
 
     const validateUserName = (userName) => {
         if (userName.trim() === "" || userName === null) {
-            return "UserName should not be empty.";
+            return "Username should not be empty.";
         } else if (!isNaN(userName)) {
-            return "UserName should not be a number.";
+            return "Username should not be a number.";
         }
         return null; // No error
     };
@@ -70,35 +70,35 @@ const LoginForm = () => {
 
 
   return (
-    <div className="max-w-sm mx-auto mt-10">
+    <div className="min-h-[80vh] max-w-sm mx-auto mt-10 ">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
             Username
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="username"
             type="text"
             placeholder="Username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
-          {userNameError && <p className='text-red-500'>{userNameError}</p>}
+          {userNameError && <p className='text-red-500 font-semibold'>{userNameError}</p>}
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gmail">
             Gmail
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="gmail"
             type="email"
             placeholder="example@gmail.com"
             value={gmail}
             onChange={(e) => setGmail(e.target.value)}
           />
-          {gmailError && <p className='text-red-500'>{gmailError}</p>}
+          {gmailError && <p className='text-red-500 font-semibold'>{gmailError}</p>}
         </div>
         <div className="flex items-center justify-between">
           <button
