@@ -22,8 +22,8 @@ const RestaurantCard = ({
         alt={name}
       />
       <div className="ml-1">
-        <h1 className="font-bold text-semiTransparent-blue">{name}</h1>
-        <h1 className="font-bold text-semiTransparent-blue">
+        <h1 className="font-semibold text-semiTransparent-blue">{name}</h1>
+        <h1 className="font-semibold text-semiTransparent-blue">
           {avgRating} <FontAwesomeIcon className="text-yellow-500" icon={faStar} />
         </h1>
         <h2>
@@ -108,7 +108,7 @@ export const RestaurantGrid = () => {
       <SearchComponent searchText={searchText} searchFunction={getRestaurants} />
 
        {(filteredRestaurants.length > 0 && allRestaurants)?
-       <div className="flex justify-center m-[50px] flex-wrap">
+       <div className="flex justify-end pr-[0%] my-[5%] sm:px-[5%] flex-wrap sm:justify-center">
         {filteredRestaurants?.map((restaurant) => {
           return (
             <Link key={restaurant.info.id} to={"/restaurant/" + restaurant?.info?.id}>

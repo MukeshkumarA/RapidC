@@ -5,7 +5,7 @@ import { UserContext, ThemeContext } from '../utils/Context';
 import UserProfile from './UserProfile/UserProfile';
 import { useTheme } from '../utils/ContextProvider';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon, faMoon, faSun, faBars, faCarrot } from './FontAwesome';
+import { FontAwesomeIcon, faMoon, faSun, faBars, faCartPlus } from './FontAwesome';
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -62,7 +62,7 @@ const Header = () => {
 
             <li>
               <Link to={'/cart'}>
-                <FontAwesomeIcon icon={faCarrot} />
+                <FontAwesomeIcon icon={faCartPlus} />
               </Link>
 
             </li>

@@ -68,7 +68,7 @@ const RestaurantMenu = () => {
         <div className="flex flex-col items-center relative mt-[5%]">
             <div className="flex justify-around w-full mb-5">
                 {/* <h1>RestaurantId:{restaurantId}</h1> */}
-                <div className="mb-5">
+                <div className="mb-5 max-w-[50%]">
                     <h2 className="text-2xl font-semibold mb-3">{restaurantData?.name}</h2>
                     {/* <h2>{restaurantData?.areaName}</h2> */}
                     <h2 className="text-sm">{restaurantData?.cuisines?.join(', ')}</h2>

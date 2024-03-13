@@ -38,9 +38,9 @@ const Cart = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='p-6 font-semibold text-4xl text-center'>Cart Items</h1>
+                <h1 className='p-6 font-semibold text-3xl md:text-4xl text-center'>Cart Items</h1>
                 {cartItems.length > 0 && // Check the length of the cartItems array
-                    <button className='absolute px-3 py-2 rounded-sm text-xl bg-green-300 right-[15%] top-5' onClick={() => handleClick()}><FontAwesomeIcon className="" icon={faTrash} /></button>
+                    <button className='absolute px-3 py-2 rounded-sm text-xl bg-green-300 right-[5%] md:right-[15%] top-5' onClick={() => handleClick()}><FontAwesomeIcon className="" icon={faTrash} /></button>
                 }
             </div>
 
@@ -58,8 +58,8 @@ const Cart = () => {
                 </div>
             )}
             {cartItems.length > 0 && (
-                <div className='w-[30%] mx-auto text-center mt-10'>
-                    <div className="mt-4 flex w- justify-between font-bold">
+                <div className=' w-[80%] mb-8 md:w-[30%] mx-auto text-center mt-10'>
+                    <div className="mt-4 flex justify-between px-5 md:px-0 font-bold">
                         <p>To Pay</p>
                         <p>₹ {totalAmount.toFixed(2)}</p>
                     </div>
