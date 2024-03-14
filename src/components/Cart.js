@@ -58,7 +58,7 @@ const Cart = () => {
                 </div>
             )}
             {cartItems.length > 0 && (
-                <div className=' w-[80%] mb-8 md:w-[30%] mx-auto text-center mt-10'>
+                <div className='w-[80%] mb-8  md:w-[50%] mx-auto text-center mt-12'>
                     <div className="mt-4 flex justify-between px-5 md:px-0 font-bold">
                         <p>To Pay</p>
                         <p>₹ {totalAmount.toFixed(2)}</p>

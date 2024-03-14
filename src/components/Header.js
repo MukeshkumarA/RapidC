@@ -5,7 +5,7 @@ import { UserContext, ThemeContext } from '../utils/Context';
 import UserProfile from './UserProfile/UserProfile';
 import { useTheme } from '../utils/ContextProvider';
 import { useSelector } from 'react-redux';
-import { FontAwesomeIcon, faMoon, faSun, faBars, faCartPlus } from './FontAwesome';
+import { FontAwesomeIcon, faMoon, faSun, faBars, faCartPlus, faX } from './FontAwesome';
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -19,12 +19,12 @@ const Header = () => {
 
   return (
     <>
-      <div className="flex justify-center md:justify-around  gap-x-14 md:gap-0   shadow-lg py-5">
+      <div className="relative flex justify-center md:justify-around  gap-x-14 md:gap-0   shadow-lg py-5">
         <div>
           <Title />
         </div>
-        <div className='hidden md:block'>
-          <ul className="flex space-x-8 mt-3 font-semibold">
+        <div className='hidden md:block text-xl'>
+          <ul className="flex space-x-8 mt-2 font-semibold">
             {[
               { to: '/', text: 'Home' },
               // { to: '/about', text: 'About' },
@@ -32,14 +32,6 @@ const Header = () => {
               { to: '/cart', text: 'Cart - ' + cartItems.length },
               (!user.isLoggedIn) ? { to: '/login', text: 'Login' } : { to: null, text: <UserProfile /> },
               // { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
-              {
-                to: null,
-                text: theme === 'light' ? (
-                  <span className='cursor-pointer text-xl text-gray-800' onClick={toggleTheme}  ><FontAwesomeIcon icon={faMoon} /></span>
-                ) : (
-                  <span className='cursor-pointer text-xl text-white-800' onClick={toggleTheme} ><FontAwesomeIcon icon={faSun} /></span>
-                )
-              }
             ].map(({ to, text }, index) => (
               <li key={index} className='hover:font-bold'>
                 <Link to={to}>
@@ -47,22 +39,25 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              {theme === 'light' ? (
+                <span className='cursor-pointer text-xl text-gray-800' onClick={toggleTheme}  ><FontAwesomeIcon icon={faMoon} /></span>
+              ) : (
+                <span className='cursor-pointer text-xl text-white-800' onClick={toggleTheme} ><FontAwesomeIcon icon={faSun} /></span>
+              )
+              }
+            </li>
           </ul>
         </div>
 
-        <div className='visible md:hidden mt-1'>
-          <ul className="flex space-x-3 font-semibold">
+        <div className='visible md:hidden mt-3'>
+          <ul className="flex space-x-4 font-semibold ">
             <li>
               {(user.isLoggedIn) && <UserProfile />}
             </li>
-
             <li>
-              <FontAwesomeIcon icon={faBars} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
-            </li>
-
-            <li>
-              <Link to={'/cart'}>
-                <FontAwesomeIcon icon={faCartPlus} />
+              <Link to={'/cart'} >
+                <FontAwesomeIcon className='text-xl' icon={faCartPlus} />
               </Link>
 
             </li>
@@ -70,20 +65,29 @@ const Header = () => {
             <li>
               {
                 theme === 'light' ? (
-                  <span className='cursor-pointer text-gray-800' onClick={toggleTheme}  ><FontAwesomeIcon icon={faMoon} /></span>
+                  <span className='cursor-pointer text-gray-800' onClick={toggleTheme}  ><FontAwesomeIcon className='text-xl' icon={faMoon} /></span>
                 ) : (
-                  <span className='cursor-pointer text-white-800' onClick={toggleTheme} ><FontAwesomeIcon icon={faSun} /></span>
+                  <span className='cursor-pointer text-white-800' onClick={toggleTheme} ><FontAwesomeIcon className='text-xl' icon={faSun} /></span>
                 )
               }
             </li>
+
+            {!isMobileMenuOpen && <li>
+              <FontAwesomeIcon className='text-xl' icon={faBars} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
+            </li>}
+
+            {isMobileMenuOpen && <li>
+              <FontAwesomeIcon className='text-xl' icon={faX} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
+            </li>
+            }
 
           </ul>
         </div>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className='absolute hidden'>
-            <ul className="space-x-8 font-semibold">
+          <div className='absolute md:hidden left-0 top-[100%] w-full z-50 bg-white h-lvh'>
+            <ul className="font-semibold pl-[10%] pt-[5%]">
               {[
                 { to: '/', text: 'Home' },
                 // { to: '/about', text: 'About' },
@@ -92,7 +96,7 @@ const Header = () => {
                 (!user.isLoggedIn) ? { to: '/login', text: 'Login' } : { to: null, text: 'Logout' },
                 // { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
               ].map(({ to, text }, index) => (
-                <li key={index} className='hover:font-bold'>
+                <li key={index} className='hover:font-bold text-xl my-[8%] border-none border-b-cyan-950'>
                   <Link to={to}>
                     {text}
                   </Link>

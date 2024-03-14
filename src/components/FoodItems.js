@@ -21,10 +21,10 @@ const FoodItems = ({ name, price, imageId, description, quantity }) => {
     };
 
     return (
-        <div className="food-item p-5 m-8 shadow-lg bg-pink-50 w-[80%] md:w-1/2 mx-auto md:flex justify-between items-center">
-            <div className="flex items-center mb-3 md:w[50%] md:mb-0">
+        <div className="food-item p-5 m-8 shadow-lg bg-pink-50 w-[80%] md:w-[60%] mx-auto md:flex md:justify-between items-center">
+            <div className="md:w-[50%] flex items-center mb-3 md:mb-0">
                 <img src={IMG_CDN_URL + imageId} className="w-12" alt={name} />
-                <h2 className="font-medium ml-2">{name}</h2>
+                <h2 className="font-medium ml-2 text-wrap">{name}</h2>
             </div>
             <div className="flex justify-center w-[25%] md:w-[15%] items-center border border-black">
                 <button className="mx-2" onClick={() => handleAction("add")}>+</button>

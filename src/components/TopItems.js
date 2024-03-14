@@ -74,7 +74,7 @@ const TopItems = () => {
   return (
     <>
       <div className='relative'>
-        <div className='z-50 absolute top-[-16]  right-[15%] md:right-[20%]' key="div1">
+        <div className='z-40 absolute top-[-16]  right-[15%] md:right-[20%]' key="div1">
           <button key="left-button" className='mx-2 px-2  py-1 rounded-full  border focus:border-black' onClick={moveLeft}><FontAwesomeIcon className='icon text-black' icon={faArrowLeft} /></button>
           <button key="right-button" className='mx-2 px-2  py-1 rounded-full border  focus:border-black' onClick={moveRight}><FontAwesomeIcon className='icon text-black' icon={faArrowRight} /></button>
         </div>

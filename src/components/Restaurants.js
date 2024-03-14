@@ -108,7 +108,7 @@ export const RestaurantGrid = () => {
       <SearchComponent searchText={searchText} searchFunction={getRestaurants} />
 
        {(filteredRestaurants.length > 0 && allRestaurants)?
-       <div className="flex justify-end pr-[0%] my-[5%] sm:px-[5%] flex-wrap sm:justify-center">
+       <div className="flex  justify-center flex-wrap my-[5%] px-[2%]">
         {filteredRestaurants?.map((restaurant) => {
           return (
             <Link key={restaurant.info.id} to={"/restaurant/" + restaurant?.info?.id}>
