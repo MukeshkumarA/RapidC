@@ -158,7 +158,7 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
           />
           {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-500'>Add item</button> */}
           <button
-            className="z-50 bottom-[-5] left-3 absolute px-5 py-1 font-semibold rounded-md text-orange-500 border bg-white hover:border-orange-500"
+            className="z-40 bottom-[-5] left-3 absolute px-5 py-1 font-semibold rounded-md text-orange-500 border bg-white hover:border-orange-500"
             onClick={() => handleAddItem(itemCard)}
           >
             Add

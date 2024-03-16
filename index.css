@@ -76,6 +76,10 @@ h3 {
   color: #333333;
 }
 
+
+[data-theme="dark"] .mobileNavbar {
+  background-color: #333333;
+}
 /* .user-profile:hover .user-info {
     display: block;
    } */

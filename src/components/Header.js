@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="relative flex justify-center md:justify-around  gap-x-14 md:gap-0   shadow-lg py-5">
+      <div className="relative flex justify-between px-[10%] md:px-0 md:justify-around  gap-x-14 md:gap-0   shadow-lg py-5">
         <div>
           <Title />
         </div>
@@ -55,8 +55,9 @@ const Header = () => {
             <li>
               {(user.isLoggedIn) && <UserProfile />}
             </li>
-            <li>
+            <li className='relative'>
               <Link to={'/cart'} >
+                <div className='absolute z-50 text-xl -top-4 left-5 text-orange-400'>{cartItems.length}</div>
                 <FontAwesomeIcon className='text-xl' icon={faCartPlus} />
               </Link>
 
@@ -86,8 +87,8 @@ const Header = () => {
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className='absolute md:hidden left-0 top-[100%] w-full z-50 bg-white h-lvh'>
-            <ul className="font-semibold pl-[10%] pt-[5%]">
+          <div className=' mobileNavbar absolute bg-white md:hidden left-0 top-[100%] w-full z-50 h-lvh'>
+            <ul className="font-semibold">
               {[
                 { to: '/', text: 'Home' },
                 // { to: '/about', text: 'About' },
@@ -96,8 +97,8 @@ const Header = () => {
                 (!user.isLoggedIn) ? { to: '/login', text: 'Login' } : { to: null, text: 'Logout' },
                 // { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
               ].map(({ to, text }, index) => (
-                <li key={index} className='hover:font-bold text-xl my-[8%] border-none border-b-cyan-950'>
-                  <Link to={to}>
+                <li key={index} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}  className='hover:font-bold  pl-[10%] hover:pb-2  hover:shadow-md text-xl my-[8%] border-none border-b-cyan-950'>
+                  <Link to={to} >
                     {text}
                   </Link>
                 </li>
