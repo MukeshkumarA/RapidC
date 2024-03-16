@@ -9,11 +9,9 @@ import { FontAwesomeIcon, faMoon, faSun, faBars, faCartPlus, faX } from './FontA
 
 const Header = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
   const { theme, toggleTheme } = useTheme();
 
   const cartItems = useSelector(store => store.cart.items);
-  console.log(cartItems);
 
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 

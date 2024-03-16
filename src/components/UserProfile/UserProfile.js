@@ -7,7 +7,7 @@ const UserProfile = () => {
 
     const { user, updateUser } = useContext(UserContext);
 
-    handleLogout = () => {
+    const handleLogout = () => {
         updateUser({ userName: '', gmail: '', isLoggedIn: false });
         alert("Successfully logged out");
     }
