@@ -22,13 +22,9 @@ const RestaurantMenu = () => {
 
     async function getRestaurantInfo() {
        const data = await fetch(`${RESTAURANT_ITEMS_FIRST}${restaurantId}${RESTAURANT_ITEMS_SECOND}`);
-
         const json = await data.json();
-        console.log(json.data);
         setRestaurantData(json.data?.cards[0]?.card?.card?.info);
-        console.log("restaurant data " , json.data?.cards[0]?.card?.card?.info);
         setRestaurantMenu(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
-        console.log(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
     }
 
     return (!restaurantData) ? <ShimmerComponent /> : (

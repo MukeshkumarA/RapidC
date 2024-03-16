@@ -46,7 +46,6 @@ export const RestaurantGrid = () => {
 
 
   useEffect(() => {
-    console.log("useeffect");
     getAllRestaurants();
   },[]);
 
@@ -54,7 +53,6 @@ export const RestaurantGrid = () => {
     const data = await fetch(RESTAURANT_URL);
     const json = await data.json();
     const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    console.log(restaurants);
     setAllRestaurants(restaurants);
     setFilteredRestaurants(restaurants);
   }

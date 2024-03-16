@@ -28,7 +28,6 @@ const TopItems = () => {
   async function getTopItems() {
     const data = await fetch(TOP_ITEMS_URL);
     const json = await data.json();
-    console.log(json);
     const items = json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
     setTopItems(items);
     setItemsToShow(items);

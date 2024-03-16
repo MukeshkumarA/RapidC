@@ -10,7 +10,6 @@ import { UserContext } from '../utils/Context';
 
 const Cart = () => {
     const cartItems = useSelector((state) => state.cart.items);
-    console.log(cartItems);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();

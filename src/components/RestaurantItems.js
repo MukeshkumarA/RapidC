@@ -118,7 +118,6 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
   const dispatch = useDispatch();
 
   const handleAddItem = (itemCard) => {
-    console.log(itemCard);
     dispatch(addToCart(itemCard));
     setIsPopupOpen(true);
   };
