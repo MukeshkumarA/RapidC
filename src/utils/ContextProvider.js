@@ -28,7 +28,7 @@ export const useTheme = () => {
 export const ThemeProvider = ({children}) => {
     const [ isDarkTheme, setDarkTheme ] = useState(false);
 
-    toggleTheme = () => {
+    const toggleTheme = () => {
         setDarkTheme((prevState) => !prevState);
     }
 
