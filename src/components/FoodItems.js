@@ -4,7 +4,7 @@ import { removeFromCart, handleQuantity } from "../utils/cartSlice";
 import { FontAwesomeIcon, faTrash } from "./FontAwesome";
 
 
-const FoodItems = ({ name, price, imageId, description, quantity }) => {
+const FoodItems = ({ name, price, imageId, description, quantity, defaultPrice }) => {
 
     price = parseInt(price);
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const FoodItems = ({ name, price, imageId, description, quantity }) => {
                 <h2 className="px-2">{quantity}</h2>
                 <button className="mx-2" onClick={() => handleAction("remove")}>-</button>
             </div>
-            <h3 className="my-2 md:my-0">₹{(price / 100 * quantity).toFixed(2)}</h3>
+            <h3 className="my-2 md:my-0">₹{((price)?(price):(defaultPrice) / 100 * quantity).toFixed(2)}</h3>
             <button className="mx-2" onClick={handleRemove}>
                 <FontAwesomeIcon className="text-green-800" icon={faTrash} />
             </button>

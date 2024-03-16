@@ -121,7 +121,7 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
     dispatch(addToCart(itemCard));
     setIsPopupOpen(true);
   };
-
+  
   const defaultPrice = itemCard?.card?.info.defaultPrice;
 
   return (

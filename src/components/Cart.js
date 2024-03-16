@@ -17,7 +17,7 @@ const Cart = () => {
     // Calculate total number of items in the cart
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
     // Calculate total amount in the cart
-    const totalAmount = cartItems.reduce((total, item) => total + (item.card.info.price / 100) * item.quantity, 0);
+    const totalAmount = cartItems.reduce((total, item) => total + (((item.card.info.price)? (item.card.info.price) : (item.card.info.defaultPrice)) / 100) * item.quantity, 0);
 
     const handleClick = () => {
         dispatch(clearCart());
