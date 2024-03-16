@@ -70,7 +70,7 @@ const LoginForm = () => {
 
 
   return (
-    <div className="min-h-[80vh] max-w-sm mx-auto my-[4%] ">
+    <div className="min-h-[78vh] pb-[-5%] max-w-sm mx-auto my-[4%] ">
       <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">

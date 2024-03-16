@@ -40,7 +40,7 @@ const Cart = () => {
             <div className='relative'>
                 <h1 className='p-6 font-semibold text-3xl md:text-4xl text-center'>Cart Items</h1>
                 {cartItems.length > 0 && // Check the length of the cartItems array
-                    <button className='absolute px-3 py-2 rounded-sm text-xl bg-green-300 right-[5%] md:right-[15%] top-5' onClick={() => handleClick()}><FontAwesomeIcon className="" icon={faTrash} /></button>
+                    <button className='absolute px-3 py-2 rounded-sm  border  right-[5%] md:right-[15%] top-5' onClick={() => handleClick()}><FontAwesomeIcon className="" icon={faTrash} /></button>
                 }
             </div>
 

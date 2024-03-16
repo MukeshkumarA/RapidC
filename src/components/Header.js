@@ -23,7 +23,7 @@ const Header = () => {
         <div>
           <Title />
         </div>
-        <div className='hidden md:block text-xl'>
+        <div className='hidden md:block text-[18px]'>
           <ul className="flex space-x-8 mt-2 font-semibold">
             {[
               { to: '/', text: 'Home' },
@@ -57,7 +57,7 @@ const Header = () => {
             </li>
             <li className='relative'>
               <Link to={'/cart'} >
-                <div className='absolute z-50 text-xl -top-4 left-5 text-orange-400'>{cartItems.length}</div>
+                {cartItems.length > 0 && <div className='absolute z-50 text-xl -top-4 left-5 text-orange-400'>{cartItems.length}</div>}
                 <FontAwesomeIcon className='text-xl' icon={faCartPlus} />
               </Link>
 
@@ -114,57 +114,3 @@ const Header = () => {
 }
 
 export default Header;
-
-// const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-//   return (
-//     <>
-//       <div className={`flex justify-between items-center shadow-lg py-5 ${isMobileMenuOpen ? 'bg-gray-200' : ''}`}>
-//         <Title />
-//         <div className="md:hidden">
-//           {isMobileMenuOpen ? (
-//             <FontAwesomeIcon icon={faTimes} onClick={() => setMobileMenuOpen(false)} />
-//           ) : (
-//             <FontAwesomeIcon icon={faBars} onClick={() => setMobileMenuOpen(true)} />
-//           )}
-//         </div>
-//         <div className="hidden md:flex">
-//           <ul className="flex space-x-8 mt-3 font-semibold">
-//             {[
-//               { to: '/', text: 'Home' },
-//               // { to: '/about', text: 'About' },
-//               // { to: '/contact', text: 'Contact' },
-//               { to: '/cart', text: `Cart - ${cartItems.length}` },
-//               { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
-//               {
-//                 to: '/',
-//                 text: theme === 'light' ? (
-//                   <span className='cursor-pointer text-xl text-gray-800' onClick={toggleTheme}><FontAwesomeIcon icon={faMoon} /></span>
-//                 ) : (
-//                   <span className='cursor-pointer text-xl text-white-800' onClick={toggleTheme}><FontAwesomeIcon icon={faSun} /></span>
-//                 )
-//               }
-//             ].map(({ to, text }, index) => (
-//               <li key={index} className='hover:font-bold'>
-//                 <Link to={to}>
-//                   {text}
-//                 </Link>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-
-//       {isMobileMenuOpen && (
-//         <div className="md:hidden bg-gray-200 py-3">
-//           <ul className="flex flex-col items-center space-y-4">
-//             {/* Mobile menu items */}
-//             <li>
-//               <Link to="/">Home</Link>
-//             </li>
-//             {/* Add more mobile menu items as needed */}
-//           </ul>
-//         </div>
-//       )}
-//     </>
-//   );

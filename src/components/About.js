@@ -1,6 +1,5 @@
 import Profile from "./Profile";
 
-
 const About = () => {
     return (
         <div className="text-center font-bold">

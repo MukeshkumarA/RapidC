@@ -6,6 +6,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/dist/css/themes/splide-default.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { TOP_ITEMS_URL } from '../config';
 
 
 
@@ -25,35 +26,13 @@ const TopItems = () => {
   }, []);
 
   async function getTopItems() {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.89960&lng=80.22090&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch(TOP_ITEMS_URL);
     const json = await data.json();
     console.log(json);
     const items = json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
     setTopItems(items);
     setItemsToShow(items);
   }
-
-
-
-  // const moveLeft = () => {
-  //   if (containerRef.current) {
-  //     containerRef.current.scrollBy({
-  //       left: -520, // Adjust this value based on your requirement
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  //   alert("sample");
-  // };
-
-  // const moveRight = () => {
-  //   if (containerRef.current) {
-  //     containerRef.current.scrollBy({
-  //       left: 520, // Adjust this value based on your requirement
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  //   alert("sample");
-  // };
 
   const moveLeft = () => {
     if (splideRef.current) {

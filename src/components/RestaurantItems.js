@@ -49,13 +49,6 @@ const RestaurantItems = ({
             <h1 className="font-semibold text-orange-400">
               {category.title} - {category.itemCards.length}
             </h1>
-
-            {/* {categoryVisible ? (
-            <button className='p-2 border-2 rounded-lg' onClick={() => setCategoryVisible(-1)} type="button">In</button>
-            ) : (
-                <button className='p-2 border-2 rounded-lg' onClick={() => setCategoryVisible(temp)} type="button">Out</button>
-            )} */}
-
             {category?.itemCards?.map((itemCard, itemIndex) => (
               <div key={itemIndex}>
                 {isVisible && (
@@ -131,8 +124,6 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
   };
 
   const defaultPrice = itemCard?.card?.info.defaultPrice;
-
-  // console.log(itemCard?.card?.info);  
 
   return (
     <div>

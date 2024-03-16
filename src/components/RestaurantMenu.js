@@ -4,6 +4,7 @@ import { IMG_CDN_URL } from "../config";
 import RestaurantItems from "./RestaurantItems";
 import ShimmerComponent from "./Shimmer";
 import { FontAwesomeIcon,faStar } from "./FontAwesome";
+import { RESTAURANT_ITEMS_FIRST, RESTAURANT_ITEMS_SECOND } from "../config";
 
 
 const RestaurantMenu = () => {
@@ -20,9 +21,7 @@ const RestaurantMenu = () => {
     }, []);
 
     async function getRestaurantInfo() {
-        // const data = await fetch (`https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D12.9715987%26lng%3D77.5945627%26restaurantId%3D${id}`);
-        // const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0826802&lng=80.2707184&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`);
-        const data = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0826802&lng=80.2707184&restaurantId=${restaurantId}&catalog_qa=undefined&submitAction=ENTER`);
+       const data = await fetch(`${RESTAURANT_ITEMS_FIRST}${restaurantId}${RESTAURANT_ITEMS_SECOND}`);
 
         const json = await data.json();
         console.log(json.data);
@@ -31,38 +30,6 @@ const RestaurantMenu = () => {
         setRestaurantMenu(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
         console.log(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
     }
-
-    // <div>
-    {/* <div>
-                <h1>RestaurantId:{id}</h1>
-                <h2>{restaurantData?.name}</h2>
-                <img src={IMG_CDN_URL + restaurantData?.cloudinaryImageId} alt={restaurantData?.name}/>
-                <h3>{restaurantData.locality}</h3>
-                <h3>{restaurantData.areaName}</h3>
-                <h3>{restaurantData.avgRating} stars</h3>
-                <h3>{restaurantData.costForTwoMessage}</h3>
-            </div> */}
-
-    //     <div className='p-5'>
-    //         {/* <h1>Restaurants</h1> */}
-    //         <ul>
-    //         {
-    //             restaurantMenu?.map((item, index) => {
-    //             if (item.card.card.title) {
-    //                 // return <MenuItems ItemCards={item?.card?.card?.itemCards || item?.card?.card?.categories} key={index} categoryLength={item?.card?.card?.itemCards?.length || item?.card?.card?.categories?.length} title={item?.card?.card?.title} nestingLevel={0}/>
-    //                 // {item?.card?.card?.itemCards.map(item => {
-    //                 //     return (
-    //                 //         <h1>{item.name}</h1>
-    //                 //     );
-    //                 // })}
-    //                 <h1>{item.card.card.title}</h1>
-    //             }
-    //             })
-    //         }
-    //         </ul>
-    //     </div>
-    // </div>
-
 
     return (!restaurantData) ? <ShimmerComponent /> : (
         <div className="flex flex-col items-center relative mt-[5%]">

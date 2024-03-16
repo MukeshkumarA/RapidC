@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
       { path: "/contact", element: <Contact />, errorElement: <Error /> },
       { path: "/restaurant/:restaurantId", element: <Suspense><RestaurantMenu /></Suspense>, errorElement: <Error /> },
       { path: "/login", element: <Login />, errorElement: <Error /> },
-      { path: "/cart", element: <Suspense fallback={`Loading............`}><Cart /></Suspense>, errorElement: <Error />},
+      { path: "/cart", element: <Suspense fallback={`Loading....`}><Cart /></Suspense>, errorElement: <Error />},
       { path: "/payment", element: <PaymentPage></PaymentPage>, errorElement: <Error  /> }, // TODO: implement PaymentPage component
     ],
   }

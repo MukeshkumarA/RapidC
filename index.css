@@ -68,7 +68,7 @@ h3 {
 }
 
 
-[data-theme="dark"] .input {
+[data-theme="dark"] .input, [data-theme="dark"] .icon {
   color: #fff;
 }
 

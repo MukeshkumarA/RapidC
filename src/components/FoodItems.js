@@ -41,24 +41,3 @@ const FoodItems = ({ name, price, imageId, description, quantity }) => {
 }
 
 export default FoodItems;
-
-// w-[12%] flex border border-green-500 text-center
-
-
-{/* <div className=" p-5 m-8 shadow-lg bg-pink-50 w-[50%] mx-auto flex justify-between">
-            <div className="flex-grow-0">
-                <img src={IMG_CDN_URL + imageId} className="w-12" />
-                <h2 className="font-medium">{name}</h2>
-            </div>
-            <div className="content-center">
-                <div className="flex justify-center border border-green-400">
-                    <button className="mx-2" onClick={() => handleAction("add")}>+</button>
-                    <h2>{quantity}</h2>
-                    <button className="mx-2" onClick={() => handleAction("remove")}>-</button>
-                </div>
-            </div>
-            <h4>₹ {((Math.round(price) / 100) * quantity).toFixed(2)}</h4>
-            <button className="mx-2" onClick={handleRemove}><FontAwesomeIcon className="text-green-800" icon={faTrash}/></button>
-        </div> */}
-
-
