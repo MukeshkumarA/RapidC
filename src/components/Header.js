@@ -72,14 +72,13 @@ const Header = () => {
             </li>
 
             {!isMobileMenuOpen && <li>
-              <FontAwesomeIcon className='text-xl' icon={faBars} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
+              <FontAwesomeIcon className='cursor-pointer text-xl' icon={faBars} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
             </li>}
 
             {isMobileMenuOpen && <li>
-              <FontAwesomeIcon className='text-xl' icon={faX} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
+              <FontAwesomeIcon className='cursor-pointer text-xl' icon={faX} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} />
             </li>
             }
-
           </ul>
         </div>
 
@@ -95,7 +94,7 @@ const Header = () => {
                 (!user.isLoggedIn) ? { to: '/login', text: 'Login' } : { to: null, text: 'Logout' },
                 // { to: '/login', text: !user.isLoggedIn ? 'Log in' : <UserProfile /> },
               ].map(({ to, text }, index) => (
-                <li key={index} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}  className='hover:font-bold  pl-[10%] hover:pb-2  hover:shadow-md text-xl my-[8%] border-none border-b-cyan-950'>
+                <li key={index} onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} className='hover:font-bold  pl-[10%] hover:pb-2  hover:shadow-md text-xl my-[8%] border-none border-b-cyan-950'>
                   <Link to={to} >
                     {text}
                   </Link>

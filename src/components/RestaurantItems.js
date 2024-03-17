@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IMG_CDN_URL } from "../config";
+import { IMG_CDN_URL } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addToCart, clearCart } from "../utils/cartSlice";
 import { FontAwesomeIcon, faStar, faAngleUp, faAngleDown } from "./FontAwesome";
@@ -121,7 +121,7 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
     dispatch(addToCart(itemCard));
     setIsPopupOpen(true);
   };
-  
+
   const defaultPrice = itemCard?.card?.info.defaultPrice;
 
   return (
@@ -130,7 +130,7 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
         {/* <button className='border-2 bg-green-400 p-3' onClick={handleAddItem(itemCard)}>Add</button> */}
         <div className="w-[60%]">
           <h2 className="font-semibold text-">{itemCard.card.info.name}</h2>
-          {defaultPrice? 
+          {defaultPrice ?
             <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> :
             <p>₹{itemCard?.card?.info?.price / 100}</p>
           }
@@ -175,7 +175,7 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
                 fontWeight: "600",
                 zIndex: "9999"
               }}
-              closingTime = "800"
+              closingTime="800"
               onClose={() => setIsPopupOpen(false)}
             />
           )}

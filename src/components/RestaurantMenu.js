@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // used to read the dynamic url params
-import { IMG_CDN_URL } from "../config";
+import { IMG_CDN_URL } from "../utils/constant";
 import RestaurantItems from "./RestaurantItems";
-import ShimmerComponent from "./Shimmer";
-import { FontAwesomeIcon,faStar } from "./FontAwesome";
-import { RESTAURANT_ITEMS_FIRST, RESTAURANT_ITEMS_SECOND } from "../config";
+import MenuShimmer from "./MenuShimmer";
+import { FontAwesomeIcon, faStar } from "./FontAwesome";
+import { RESTAURANT_MENU } from "../utils/constant";
 
 
 const RestaurantMenu = () => {
@@ -21,13 +21,13 @@ const RestaurantMenu = () => {
     }, []);
 
     async function getRestaurantInfo() {
-       const data = await fetch(`${RESTAURANT_ITEMS_FIRST}${restaurantId}${RESTAURANT_ITEMS_SECOND}`);
+        const data = await fetch(RESTAURANT_MENU + restaurantId);
         const json = await data.json();
         setRestaurantData(json.data?.cards[0]?.card?.card?.info);
         setRestaurantMenu(json?.data?.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards);
     }
 
-    return (!restaurantData) ? <ShimmerComponent /> : (
+    return (!restaurantData) ? <MenuShimmer /> : (
         <div className="flex flex-col items-center relative mt-[5%]">
             <div className="flex justify-around w-full mb-5">
                 {/* <h1>RestaurantId:{restaurantId}</h1> */}
@@ -51,9 +51,9 @@ const RestaurantMenu = () => {
                     return (
                         (item.card.card.categories || item.card.card.itemCards) ? (
                             <div key={index} className='mb-3'>
-                                <RestaurantItems restaurantData={restaurantData}  restaurantItems={item.card} menuIndex={index} isVisible={index == isVisible} setIsVisible={setIsVisible} />
+                                <RestaurantItems restaurantData={restaurantData} restaurantItems={item.card} menuIndex={index} isVisible={index == isVisible} setIsVisible={setIsVisible} />
                                 <br />
-                                <hr className="h-3 bg-green-100"/>
+                                <hr className="h-3 bg-green-100" />
                             </div>
                         ) : null
                     );

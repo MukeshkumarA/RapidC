@@ -1,12 +1,12 @@
 // import { RestaurantList } from "../data/restaurantsData";
 import ShimmerComponent from "./Shimmer";
-import { IMG_CDN_URL } from "../config";
+import { IMG_CDN_URL } from "../utils/constant";
 import { useEffect, useState } from "react";
 import SearchComponent from "./SearchComponent";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon,faStar   } from "./FontAwesome";
+import { FontAwesomeIcon, faStar } from "./FontAwesome";
 import Footer from './Footer';
-import { RESTAURANT_URL } from "../config";
+import { RESTAURANT_URL } from "../utils/constant";
 
 const RestaurantCard = ({
   name,
@@ -47,9 +47,10 @@ export const RestaurantGrid = () => {
 
   useEffect(() => {
     getAllRestaurants();
-  },[]);
+  }, []);
 
-  async function getAllRestaurants(){
+
+  async function getAllRestaurants() {
     const data = await fetch(RESTAURANT_URL);
     const json = await data.json();
     const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -61,40 +62,40 @@ export const RestaurantGrid = () => {
     const value = event.target.value;
     setSearchText(value);
 
-    const filteredRestaurants = allRestaurants.filter( restaurant => {
-        return restaurant?.info?.name.toLowerCase().includes(value.toLowerCase());
+    const filteredRestaurants = allRestaurants.filter(restaurant => {
+      return restaurant?.info?.name.toLowerCase().includes(value.toLowerCase());
     })
-    if(value == "")
+    if (value == "")
       setFilteredRestaurants(allRestaurants);
     else
       setFilteredRestaurants(filteredRestaurants);
   };
 
 
-  return (!filteredRestaurants)? <ShimmerComponent /> :
-  (
-    <div>
-      <SearchComponent searchText={searchText} searchFunction={getRestaurants} />
+  return (!filteredRestaurants) ? <ShimmerComponent /> :
+    (
+      <div>
+        <SearchComponent searchText={searchText} searchFunction={getRestaurants} />
 
-       {(filteredRestaurants.length > 0 && allRestaurants)?
-       <div className="flex  justify-center flex-wrap my-[5%] px-[2%]">
-        {filteredRestaurants?.map((restaurant) => {
-          return (
-            <Link key={restaurant.info.id} to={"/restaurant/" + restaurant?.info?.id}>
-              <RestaurantCard {...restaurant.info}  />
-            </Link>
-          );
-        })}
+        {(filteredRestaurants.length > 0 && allRestaurants) ?
+          <div className="flex  justify-center flex-wrap my-[5%] px-[2%]">
+            {filteredRestaurants?.map((restaurant) => {
+              return (
+                <Link key={restaurant.info.id} to={"/restaurant/" + restaurant?.info?.id}>
+                  <RestaurantCard {...restaurant.info} />
+                </Link>
+              );
+            })}
+          </div>
+          :
+          <div className="flex justify-center  text-red-500 m-16 p-5">
+            <h2 className="text-xl">No restaurants found...</h2>
+          </div>
+        }
+
+        <Footer />
       </div>
-      :
-      <div className="flex justify-center  text-red-500 m-16 p-5">
-         <h2 className="text-xl">No restaurants found...</h2>
-        </div>
-      }
-
-      <Footer />
-    </div>
-  );
+    );
 };
 
 

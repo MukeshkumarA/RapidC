@@ -1,22 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { IMG_CDN_URL } from '../config';
+import { IMG_CDN_URL } from '../utils/constant';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-// import '@splidejs/react-splide/css';
-// import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/dist/css/themes/splide-default.min.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { TOP_ITEMS_URL } from '../config';
-
+import { FontAwesomeIcon, faArrowRight, faArrowLeft } from './FontAwesome';
+import { TOP_ITEMS_URL } from '../utils/constant';
 
 
 const TopItems = () => {
-
   const [topItems, setTopItems] = useState();
-  const [stIndex, setStIndex] = useState(0);
-  const [endIndex, setEndIndex] = useState(5);
-  // const  itemsToShow = topItems?.slice(stIndex, endIndex);
-  // const itemsToShow = topItems;
   const [itemsToShow, setItemsToShow] = useState([]);
   const containerRef = useRef(null);
   const splideRef = useRef(null);

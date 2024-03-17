@@ -24,49 +24,49 @@ const LoginForm = () => {
     console.log('otp ', otp);
   };
 
-    const validateUserName = (userName) => {
-        if (userName.trim() === "" || userName === null) {
-            return "Username should not be empty.";
-        } else if (!isNaN(userName)) {
-            return "Username should not be a number.";
-        }
-        return null; // No error
-    };
+  const validateUserName = (userName) => {
+    if (userName.trim() === "" || userName === null) {
+      return "Username should not be empty.";
+    } else if (!isNaN(userName)) {
+      return "Username should not be a number.";
+    }
+    return null; // No error
+  };
 
-    const validateEmail = (gmail) => {
-        if (gmail.trim() === "" || gmail === null) {
-            return "Email field cannot be left blank.";
-        }
-        const gmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!gmailRegex.test(gmail)) {
-            return "Invalid email format.";
-        }
-        return null; // No error
-    };
+  const validateEmail = (gmail) => {
+    if (gmail.trim() === "" || gmail === null) {
+      return "Email field cannot be left blank.";
+    }
+    const gmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!gmailRegex.test(gmail)) {
+      return "Invalid email format.";
+    }
+    return null; // No error
+  };
 
-    const submit = () => {
-        const userNameError = validateUserName(userName);
-        const gmailError = validateEmail(gmail);
+  const submit = () => {
+    const userNameError = validateUserName(userName);
+    const gmailError = validateEmail(gmail);
 
-        if (userNameError) {
-            setUserNameError(userNameError);
-        } else {
-            setUserNameError(null); // Clear previous error
-        }
+    if (userNameError) {
+      setUserNameError(userNameError);
+    } else {
+      setUserNameError(null); // Clear previous error
+    }
 
-        if (gmailError) {
-            setGmailError(gmailError);
-        } else {
-            setGmailError(null); // Clear previous error
-        }
+    if (gmailError) {
+      setGmailError(gmailError);
+    } else {
+      setGmailError(null); // Clear previous error
+    }
 
-        if (!userNameError && !gmailError) {
-            // Update user data in context
-            updateUser({ userName, gmail, isLoggedIn: true });
-            alert("Successfully logged in");
-            navigate("/");
-        }
-    };
+    if (!userNameError && !gmailError) {
+      // Update user data in context
+      updateUser({ userName, gmail, isLoggedIn: true });
+      alert("Successfully logged in");
+      navigate("/");
+    }
+  };
 
 
   return (

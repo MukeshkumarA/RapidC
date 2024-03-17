@@ -10,7 +10,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Login from "./components/Login";
 import { ThemeProvider, UserProvider } from "./utils/ContextProvider";
 import { Provider } from "react-redux";
-import store from "./utils/store";
+import store from "./utils/Store";
 
 // chunking | code splitting | dynamic bundling | lazy loading | on demand loading | dynamic import
 const Cart = lazy(() => import("./components/Cart"));

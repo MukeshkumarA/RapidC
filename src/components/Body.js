@@ -3,10 +3,10 @@ import { RestaurantGrid } from './Restaurants';
 
 
 const Body = () => {
-    return ( 
+    return (
         <>
-         <TopItems/>
-         <RestaurantGrid />
+            <TopItems />
+            <RestaurantGrid />
         </>
     );
 }
