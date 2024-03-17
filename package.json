@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A food delivery app",
   "scripts": {
-    "start": "parcel build index.html --out-dir dist --public-url ./",
-    "build": "parcel build index.html",
+    "start": "parcel serve index.html --public-url /",
+    "build": "parcel build index.html --public-url /",
     "test": "jest"
   },
   "author": "Mukesh kumar",
