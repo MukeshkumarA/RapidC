@@ -140,14 +140,11 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
           {/* <p>{itemCard.card.info}</p> */}
           {/* <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> */}
           <p className="text-sm font-light description">
-            {description.substring(0, description.indexOf('.'))}
+            {itemCard?.description}
           </p>
-          <p className="text-sm font-light description">
-            {itemCard?.description.substring(description.indexOf('.') + 1, description.indexOf('('))}
-          </p>
-          <p className="text-sm font-light description">
-            {description.substring(description.indexOf('('))}
-          </p>
+          {/* <p className="text-sm font-light description">
+            {itemCard?.description.substring(itemCard?.description.indexOf('.') + 1)}
+          </p> */}
         </div>
         <div className="relative w-[6rem]">
           <img
