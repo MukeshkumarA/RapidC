@@ -5,7 +5,7 @@ import { addToCart, clearCart } from "../utils/cartSlice";
 import { FontAwesomeIcon, faStar, faAngleUp, faAngleDown } from "./FontAwesome";
 import PopupMessage from "./PopupMessage";
 
-const RestaurantItems = ({
+export const RestaurantItems = ({
   restaurantData,
   restaurantItems,
   isVisible,
@@ -111,8 +111,10 @@ const RestaurantItems = ({
   }
 };
 
-export default RestaurantItems;
 
+
+
+// menu items card in a restaurant
 export const ItemsCard = ({ itemCard, restaurantData }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const dispatch = useDispatch();
@@ -122,29 +124,36 @@ export const ItemsCard = ({ itemCard, restaurantData }) => {
     setIsPopupOpen(true);
   };
 
-  const defaultPrice = itemCard?.card?.info.defaultPrice;
+  const defaultPrice = itemCard?.defaultPrice;
+  const description = itemCard?.description;
 
   return (
     <div>
       <div className="my-8 flex justify-between">
         {/* <button className='border-2 bg-green-400 p-3' onClick={handleAddItem(itemCard)}>Add</button> */}
         <div className="w-[60%]">
-          <h2 className="font-semibold text-">{itemCard.card.info.name}</h2>
+          <h2 className="font-bold text-lg">{itemCard.name}</h2>
           {defaultPrice ?
-            <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> :
-            <p>₹{itemCard?.card?.info?.price / 100}</p>
+            <p>₹{Number(itemCard?.defaultPrice) / 100}</p> :
+            <p>₹{Number(itemCard?.price) / 100}</p>
           }
           {/* <p>{itemCard.card.info}</p> */}
           {/* <p>₹{itemCard?.card?.info?.defaultPrice / 100}</p> */}
           <p className="text-sm font-light description">
-            {itemCard?.card?.info?.description}
+            {description.substring(0, description.indexOf('.'))}
+          </p>
+          <p className="text-sm font-light description">
+            {itemCard?.description.substring(description.indexOf('.') + 1, description.indexOf('('))}
+          </p>
+          <p className="text-sm font-light description">
+            {description.substring(description.indexOf('('))}
           </p>
         </div>
         <div className="relative w-[6rem]">
           <img
             className="w-full object-cover rounded-lg"
-            src={IMG_CDN_URL + itemCard?.card?.info?.imageId}
-            alt={itemCard?.card?.info?.name}
+            src={IMG_CDN_URL + itemCard?.imageId}
+            alt={itemCard?.name}
           />
           {/* <button className='p-2 border-2 rounded-lg text-white bg-orange-500'>Add item</button> */}
           <button
